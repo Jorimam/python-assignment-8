@@ -19,3 +19,44 @@ Example Usage:
     lib.return_book("Alice")
     print(lib.show_available_books())  # ["Data Science Handbook", "Python 101"]
 """
+class Library:
+    def __init__(self):
+        self.library = []
+        self.borrowed_books = {}
+    def add(self, book_title):
+        self.book_title = book_title
+        if self.book_title in self.library:
+            print(f"{self.book_title} already exist")
+        else:
+            self.library.append(self.book_title)
+    def borrow(self, user, book_title):
+        
+        self.user_name = user
+        self.book_title = book_title
+        if self.book_title in self.library:
+            self.library.remove(self.book_title)
+            self.borrowed_books.update({self.user_name:self.book_title})
+        else:
+            print(f"{self.book_title} is not available")
+    def return_book(self, user):
+        self.user_name = user
+        if self.user_name in self.borrowed_books:
+            self.library.append(self.borrowed_books[self.user_name])
+            self.borrowed_books.pop(self.user_name)
+        else:
+            print("User not found")
+
+    def available_books(self):
+        return self.library
+
+
+lib = Library()
+lib.add("Python 101")
+lib.add("FastAPI 101")
+lib.add("Flask 101")
+
+print(lib.available_books())
+lib.borrow("ban", "Python 101")
+print(lib.borrowed_books)
+lib.return_book("ban")
+print(lib.available_books())
