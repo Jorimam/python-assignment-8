@@ -22,3 +22,10 @@ e1.remove("Harry")
 print(e1.show())
 names = {"name": "Bob", "age": 12}
 print(names)
+goods = {"bag":1000, "shoe":1200}
+new = {"bag":1, "box":2}
+total = 0
+for item in goods:
+    if item in new:
+        total += goods[item]
+print(total)
